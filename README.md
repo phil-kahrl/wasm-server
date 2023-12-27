@@ -1,3 +1,4 @@
+`cargo build --target wasm32-wasi --release`
 
 `docker buildx build --platform wasi/wasm --provenance=false -t test6 .`
 
