@@ -1,8 +1,0 @@
-[build]
-builder = "NIXPACKS"
-buildCommand = "docker buildx build --platform wasi/wasm --provenance=false -t wasm-server -f Dockerfile.bak ."
-
-[deploy]
-startCommand = "docker run --rm --runtime=io.containerd.wasmtime.v1 --platform=wasi/wasm wasm-server -i"
-
-
