@@ -34,7 +34,7 @@ async fn handle_request(req: Request<Body>) -> Result<Response<Body>, hyper::Err
 
 #[tokio::main(flavor = "current_thread")]
 async fn main() -> Result<(), Box<dyn std::error::Error + Send + Sync>> {
-    let addr = SocketAddr::from(([0, 0, 0, 0], 8080));
+    let addr = SocketAddr::from(([0, 0, 0, 0], 5000));
 
     let listener = TcpListener::bind(addr).await?;
     println!("Listening on http://{}", addr);
