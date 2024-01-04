@@ -4,16 +4,11 @@ use hyper::service::service_fn;
 use hyper::{Body, Method, Request, Response, StatusCode};
 use tokio::net::TcpListener;
 
-/// This is our service handler. It receives a Request, routes on its
-/// path, and returns a Future of a Response.
 async fn handle_request(req: Request<Body>) -> Result<Response<Body>, hyper::Error> {
     match (req.method(), req.uri().path()) {
-        // Serve some instructions at /
         (&Method::GET, "/") => Ok(Response::new(Body::from(
-            "Try POSTing data to /echo such as: `curl localhost:8080/echo -XPOST -d 'hello world'`",
+            "ok",
         ))),
-
-        // Simply echo the body back to the client.
         (&Method::POST, "/echo") => Ok(Response::new(req.into_body())),
 
         (&Method::POST, "/echo/reversed") => {
@@ -23,7 +18,7 @@ async fn handle_request(req: Request<Body>) -> Result<Response<Body>, hyper::Err
             Ok(Response::new(Body::from(reversed_body)))
         }
 
-        // Return the 404 Not Found for other routes.
+        // 404
         _ => {
             let mut not_found = Response::default();
             *not_found.status_mut() = StatusCode::NOT_FOUND;
